@@ -80,6 +80,9 @@
 </div>
 
 <style>
+  h2 {
+    text-align: center;
+  }
   .comments-list {
     max-width: 800px;
     margin: 0 auto;
@@ -91,7 +94,9 @@
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+
   }
   
   .filter select {

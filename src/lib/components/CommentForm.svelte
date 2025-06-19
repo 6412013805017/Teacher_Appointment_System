@@ -123,11 +123,18 @@
 </div>
 
 <style>
+
+  h2 {
+    text-align: center;
+  }
   .comment-form {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    font-family: "Sarabun", sans-serif;
+    /* font-family: "Sarabun", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; */
   }
 
   .user-info {
