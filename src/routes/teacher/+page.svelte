@@ -133,6 +133,7 @@
     </div>
 
     <div class="appointments">
+        <h2>ชื่ออาจารย์ : {teacherName}</h2>
         <p>วันที่ที่เลือก : {showDate(selectedDate)}</p>
         <h2>ตารางนัดหมาย</h2>
         {#if loadingTimeSlot}
@@ -157,20 +158,6 @@
 </div>
 
 <style>
-    .row {
-        display: flex;
-        flex-direction: row;
-    }
-    .login-btn {
-        background: #06c755;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-size: 16px;
-        cursor: pointer;
-        width: 100px;
-    }
 
     .container {
         display: flex;
@@ -178,7 +165,7 @@
         flex-direction: column;
         margin: auto;
         padding: 1rem;
-        width: 1200px;
+        width: 800px;
         height: 500px;
         border-radius: 20px;
         position: absolute;
