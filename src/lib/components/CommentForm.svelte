@@ -17,7 +17,7 @@
   ];
 
   onMount(async () => {
-    await initializeLiff('');
+    await initializeLiff();
   });
 
   async function handleSubmit() {
