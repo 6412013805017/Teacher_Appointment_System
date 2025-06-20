@@ -15,7 +15,6 @@ u
     if (liff.isLoggedIn()) {
       const profile = await liff.getProfile();
       userProfile.set(profile);
-      goto('/teacher')
     }
   } catch (error) {
     console.error('LIFF initialization failed:', error);
