@@ -6,7 +6,7 @@ import { writable } from 'svelte/store';
 export const liffInitialized = writable(false);
 export const userProfile = writable(null);
 
-export async function initializeLiff() {
+export async function initializeLiff(d) {
   try {
     await liff.init({ liffId: "2007594823-0Ylb6O85" });
 
@@ -15,7 +15,9 @@ export async function initializeLiff() {
     if (liff.isLoggedIn()) {
       const profile = await liff.getProfile();
       userProfile.set(profile);
-      goto('/teacher')
+      if(d === 'teacher') {
+        goto('https://6412013805017.github.io/Teacher_Appointment_System/teacher')
+      }
     }
   } catch (error) {
     console.error('LIFF initialization failed:', error);

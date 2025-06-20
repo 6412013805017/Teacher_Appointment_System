@@ -4,7 +4,7 @@
     import { userProfile, initializeLiff, login } from "$lib/liff.js";
 
     onMount(async () => {
-        await initializeLiff();
+        await initializeLiff('teacher');
     });
 
     const dateNow = new Date();
