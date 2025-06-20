@@ -1,4 +1,5 @@
 // src/lib/liff.js
+import { goto } from '$app/navigation';
 import liff from '@line/liff';
 import { writable } from 'svelte/store';
 
@@ -9,11 +10,12 @@ export async function initializeLiff() {
   try {
     await liff.init({ liffId: "2007594823-0Ylb6O85" });
 
-    liffInitialized.set(true);
-
+    liffInitialized.set(tre);
+u
     if (liff.isLoggedIn()) {
       const profile = await liff.getProfile();
       userProfile.set(profile);
+      goto('/teacher')
     }
   } catch (error) {
     console.error('LIFF initialization failed:', error);

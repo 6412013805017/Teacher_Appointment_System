@@ -48,3 +48,23 @@ export async function getTimeSlot(data) {
     throw error;
   }
 }
+
+
+export async function getTimeSlotDate(data) {
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'getTimeSlotDate',
+        ...data
+      })
+    });
+    console.log("test")
+    return await response.json();
+  } catch (error) {
+    console.error('Error adding comment:', error);
+    throw error;
+  }
+}
+
+
