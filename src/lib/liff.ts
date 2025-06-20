@@ -10,11 +10,12 @@ export async function initializeLiff() {
   try {
     await liff.init({ liffId: "2007594823-0Ylb6O85" });
 
-    liffInitialized.set(tre);
-u
+    liffInitialized.set(true);
+
     if (liff.isLoggedIn()) {
       const profile = await liff.getProfile();
       userProfile.set(profile);
+      goto('/teacher')
     }
   } catch (error) {
     console.error('LIFF initialization failed:', error);
