@@ -16,7 +16,7 @@ export async function initializeLiff(d) {
       const profile = await liff.getProfile();
       userProfile.set(profile);
       if(d === 'teacher') {
-        goto('https://6412013805017.github.io/Teacher_Appointment_System/teacher')
+        goto('/Teacher_Appointment_System/teacher')
       }
     }
   } catch (error) {
