@@ -1,5 +1,5 @@
 // src/lib/commentService.js
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyotR1wfxMBzm-u_kYICmtJsjUHOvdEEUu9wj75xcp5CAnH-uVYFSO_KzQ9SFmAYTiI/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWb1e1KGK21L_IhjajGntboDrfV-1uV74YaAZhoTc-e1XbFkVDkGiqEoy8iyShavnDQg/exec";
 
 export async function addComment(commentData) {
   try {
