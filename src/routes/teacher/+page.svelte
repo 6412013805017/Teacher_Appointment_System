@@ -1,10 +1,12 @@
 <script>
+    import { page } from "$app/stores";
     import { onMount } from "svelte";
     import { getTimeSlot, getTimeSlotDate } from "$lib/timeSlots";
-    import { userProfile, initializeLiff, login } from "$lib/liff.js";
+
+    $: teacherName = $page.url.searchParams.get("teacher");
 
     onMount(async () => {
-        await initializeLiff();
+        console.log(teacherName);
     });
 
     const dateNow = new Date();
@@ -12,16 +14,8 @@
     let loadingTimeSlot;
     let timeAppointment;
     let dateAppointment;
+    let uniqueDates;
 
-    const thaiWeekdays = [
-        "อาทิตย์",
-        "จันทร์",
-        "อังคาร",
-        "พุธ",
-        "พฤหัสบดี",
-        "ศุกร์",
-        "เสาร์",
-    ];
     const selectorMonthData = [
         { id: 1, name: "มกราคม" },
         { id: 2, name: "กุมภาพันธ์" },
@@ -49,7 +43,7 @@
 
     async function loadTimeSlot() {
         const data = {
-            teacher: "โซฟีย์",
+            teacher: teacherName,
             date: selectedDate,
         };
         try {
@@ -73,7 +67,7 @@
     async function loadTimeSlotDate() {
         timeAppointment = [];
         const data = {
-            teacher: "โซฟีย์",
+            teacher: teacherName,
             month: selectedMonthId,
             year: selectedYear,
         };
@@ -83,6 +77,14 @@
             if (result.success) {
                 dateAppointment = result.data.reverse(); // ล่าสุดก่อน
                 console.log(dateAppointment);
+                uniqueDates = [
+                    ...new Map(
+                        dateAppointment.map((item) => [
+                            getDateOnly(item.date),
+                            item,
+                        ]),
+                    ).values(),
+                ];
             }
         } catch (error) {
             console.error("Error loading comments:", error);
@@ -102,13 +104,13 @@
             date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()
         );
     }
+
+    function getDateOnly(dateString) {
+        return new Date(dateString).toISOString().split("T")[0]; // "2025-06-19"
+    }
 </script>
 
 <div class="container">
-    <!-- <div class="login-prompt">
-        <p>กรุณาเข้าสู่ระบบด้วย LINE เพื่อแสดงความคิดเห็น</p>
-        <button on:click={login} class="login-btn">เข้าสู่ระบบด้วย LINE</button>
-    </div> -->
     <div class="sidebar">
         <div class="month-selector">
             <select name="" id="" bind:value={selectedMonthId}>
@@ -118,7 +120,7 @@
             </select>
         </div>
         <h2>วันที่</h2>
-        {#each dateAppointment as item}
+        {#each uniqueDates as item}
             <button
                 on:click={() => (selectedDate = item.date)}
                 class="date-button {selectedDate === days(item.date)
@@ -155,11 +157,9 @@
 </div>
 
 <style>
-    .login-prompt {
-        text-align: center;
-        padding: 40px;
-        background: #f9f9f9;
-        border-radius: 8px;
+    .row {
+        display: flex;
+        flex-direction: row;
     }
     .login-btn {
         background: #06c755;
@@ -169,7 +169,7 @@
         border-radius: 6px;
         font-size: 16px;
         cursor: pointer;
-        width: 100%;
+        width: 100px;
     }
 
     .container {
